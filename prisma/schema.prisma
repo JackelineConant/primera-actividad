@@ -19,7 +19,7 @@ model escuela {
 model direccion {
   id Int @id @default(autoincrement())
   calle String
-  numero Int
+  numero BigInt
   colonia String
   ciudad String
   estado String

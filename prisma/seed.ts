@@ -26,8 +26,24 @@ async function main() {
     },
   });
 
+  const alumno = await prisma.alumno.upsert({
+    where: { id: 1},
+    update: {},
+    create: {
+      id: 1,
+      nombre: "Luis Fernandez Elizondo",
+      apellido_paterno: "Garza",
+      apellido_materno: "García",
+      id_escuela: 1,
+      id_direccion: 1,
+    },
+
+  });
+
   console.log({ escuela });
-  console.log{( direccion )};
+  console.log({ direccion });
+  console.log({ alumno });
+
 }
 
 main()
