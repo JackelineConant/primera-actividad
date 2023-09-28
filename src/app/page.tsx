@@ -17,11 +17,6 @@ export default async function Home() {
             key={alumno.id}
             style={{ border: "1px solid #ccc", textAlign: "center" }}
           >
-            <img
-              src={`https://robohash.org/${alumno.id}?set=set2&size=180x180`}
-              alt={alumno.nombre}
-              style={{ height: 180, width: 180 }}
-            />
             <h3>{alumno.apellido_paterno}</h3>
             <h3>{}</h3>
 
