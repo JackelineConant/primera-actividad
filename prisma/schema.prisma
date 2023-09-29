@@ -1,40 +1,36 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
 model escuela {
-  id Int @id @default(autoincrement())
-  nombre String
+  id     Int      @id @default(autoincrement())
+  nombre String   @db.VarChar(50)
   alumno alumno[]
 }
 
 model direccion {
-  id Int @id @default(autoincrement())
-  calle String
-  numero BigInt
-  colonia String
-  ciudad String
-  estado String
+  id            Int      @id @default(autoincrement())
+  calle         String   @db.VarChar(50)
+  numero        Int
+  colonia       String   @db.VarChar(50)
+  ciudad        String   @db.VarChar(50)
+  estado        String   @db.VarChar(50)
   codigo_postal Int
-  alumno alumno[]
+  alumno        alumno[]
 }
 
 model alumno {
-  id Int @id @default(autoincrement())
-  nombre String
-  apellido_paterno String
-  apellido_materno String
-  escuela escuela @relation(fields: [id_escuela], references: [id])
-  id_escuela Int
-  direccion direccion @relation(fields: [id_direccion], references: [id])
-  id_direccion Int
-
+  id               Int       @id @default(autoincrement())
+  nombre           String    @db.VarChar(50)
+  apellido_paterno String    @db.VarChar(50)
+  apellido_materno String    @db.VarChar(50)
+  id_escuela       Int
+  id_direccion     Int
+  direccion        direccion @relation(fields: [id_direccion], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  escuela          escuela   @relation(fields: [id_escuela], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
